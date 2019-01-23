@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
 	
-	
+	//Apresenta dados para o final user!
 	@RequestMapping(method=RequestMethod.GET)
 	public String listar() {
 		return "Rest yes found!";
