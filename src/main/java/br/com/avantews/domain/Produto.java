@@ -20,8 +20,9 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String preco;
+	private Double preco;
 	
+	//Criando relacionamento muitos para muitos
 	@ManyToMany
 	@JoinTable(name = "produto_categoria",
 				joinColumns = @JoinColumn(name = "fk_produto"),
@@ -32,7 +33,7 @@ public class Produto implements Serializable {
 		
 	}
 
-	public Produto(Integer id, String nome, String preco) {
+	public Produto(Integer id, String nome, Double preco) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -55,11 +56,11 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
