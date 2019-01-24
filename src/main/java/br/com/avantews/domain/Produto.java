@@ -22,7 +22,7 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 	
-	//Criando relacionamento muitos para muitos
+	//Criando taabela de relacionamento muitos para muitos
 	@ManyToMany
 	@JoinTable(name = "produto_categoria",
 				joinColumns = @JoinColumn(name = "fk_produto"),

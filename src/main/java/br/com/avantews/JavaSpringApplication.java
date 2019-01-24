@@ -10,12 +10,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.avantews.domain.Categoria;
 import br.com.avantews.domain.Produto;
 import br.com.avantews.repositories.CategoriaRepository;
+import br.com.avantews.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class JavaSpringApplication implements CommandLineRunner {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private ProdutoRepository produtoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JavaSpringApplication.class, args);
@@ -43,7 +47,8 @@ public class JavaSpringApplication implements CommandLineRunner {
 		
 		//Salvando categorias na base de dadoss
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
-		
+		//Salvando produtos na base de dados
+		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 	}
 
 }
