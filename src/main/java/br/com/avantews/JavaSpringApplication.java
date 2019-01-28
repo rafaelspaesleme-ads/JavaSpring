@@ -72,5 +72,4 @@ public class JavaSpringApplication implements CommandLineRunner {
         //Salvando cidades na base de dados
         cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
     }
-
 }
