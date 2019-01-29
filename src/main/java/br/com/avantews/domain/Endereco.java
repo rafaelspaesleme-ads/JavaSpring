@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import org.hibernate.annotations.ManyToAny;
 
 /**
  *
@@ -29,8 +32,12 @@ public class Endereco implements Serializable {
     private String bairro;
     private String cep;
     
+    @ManyToOne
+    @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
     
+    @ManyToOne
+    @JoinColumn(name = "fk_cidade")
     private Cidade cidade;
 
     public Endereco() {
