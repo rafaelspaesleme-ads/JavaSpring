@@ -6,6 +6,8 @@
 package br.com.avantews.domain;
 
 import br.com.avantews.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,7 +37,8 @@ public class Cliente implements Serializable {
     private String email;
     private String cpfOrCnpj;
     private Integer tipoCliente;
-    
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
     

@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.ManyToAny;
 
 /**
@@ -31,7 +33,8 @@ public class Endereco implements Serializable {
     private String complemento;
     private String bairro;
     private String cep;
-    
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
