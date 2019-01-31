@@ -79,7 +79,7 @@ public class JavaSpringApplication implements CommandLineRunner {
         Endereco end2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, cid2);
         cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
 
-        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Pedido ped1 = new Pedido(null, data.parse("31/01/2019 12:00"), cli1, end1);
         Pedido ped2 = new Pedido(null, data.parse("01/02/2019 11:00"), cli1, end2);
 
