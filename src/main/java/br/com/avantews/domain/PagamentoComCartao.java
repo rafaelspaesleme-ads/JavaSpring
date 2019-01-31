@@ -2,6 +2,9 @@ package br.com.avantews.domain;
 
 import br.com.avantews.domain.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PagamentoComCartao extends Pagamento {
     private static final long serialVersionUID = 1L;
 

@@ -2,20 +2,22 @@ package br.com.avantews.domain;
 
 import br.com.avantews.domain.enums.EstadoPagamento;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private EstadoPagamento estadoPagamento;
+    private Integer estadoPagamento;
 
+    @OneToOne
+    @JoinColumn(name = "fk_pedido")
+    @MapsId
     private Pedido pedido;
 
     public Pagamento() {
@@ -23,7 +25,7 @@ public class Pagamento implements Serializable {
 
     public Pagamento(Integer id, EstadoPagamento estadoPagamento, Pedido pedido) {
         this.id = id;
-        this.estadoPagamento = estadoPagamento;
+        this.estadoPagamento = estadoPagamento.getCodigo();
         this.pedido = pedido;
     }
 
@@ -36,11 +38,11 @@ public class Pagamento implements Serializable {
     }
 
     public EstadoPagamento getEstadoPagamento() {
-        return estadoPagamento;
+        return EstadoPagamento.toEnum(estadoPagamento);
     }
 
     public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
-        this.estadoPagamento = estadoPagamento;
+        this.estadoPagamento = estadoPagamento.getCodigo();
     }
 
     public Pedido getPedido() {

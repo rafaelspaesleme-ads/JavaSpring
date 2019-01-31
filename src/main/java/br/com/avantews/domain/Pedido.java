@@ -1,9 +1,6 @@
 package br.com.avantews.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -17,20 +14,24 @@ public class Pedido implements Serializable {
     private Integer id;
     private Date instanteData;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_endereco_de_entrega")
     private Endereco enderecoDeEntrega;
 
     public Pedido() {
     }
 
-    public Pedido(Integer id, Date instanteData, Cliente cliente, Pagamento pagamento, Endereco enderecoDeEntrega) {
+    public Pedido(Integer id, Date instanteData, Cliente cliente, Endereco enderecoDeEntrega) {
         this.id = id;
         this.instanteData = instanteData;
         this.cliente = cliente;
-        this.pagamento = pagamento;
         this.enderecoDeEntrega = enderecoDeEntrega;
     }
 
