@@ -48,7 +48,10 @@ public class JavaSpringApplication implements CommandLineRunner {
 
     @Autowired
     private PagamentoRepository pagamentoRepository;
-    
+
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(JavaSpringApplication.class, args);
     }
@@ -77,7 +80,6 @@ public class JavaSpringApplication implements CommandLineRunner {
         cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
 
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-
         Pedido ped1 = new Pedido(null, data.parse("31/01/2019 12:00"), cli1, end1);
         Pedido ped2 = new Pedido(null, data.parse("01/02/2019 11:00"), cli1, end2);
 
@@ -86,6 +88,18 @@ public class JavaSpringApplication implements CommandLineRunner {
         Pagamento pgto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, data.parse("28/01/2019 14:00"), null);
         ped2.setPagamento(pgto2);
 
+        ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+        ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+        ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+
+        //Associando itens de pedidos ao pedido correspondente
+        ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+        ped2.getItens().addAll(Arrays.asList(ip3));
+
+        //Associando itens de pedido ao produto correspondente
+        p1.getItens().addAll(Arrays.asList(ip1));
+        p2.getItens().addAll(Arrays.asList(ip3));
+        p3.getItens().addAll(Arrays.asList(ip2));
 
         //Associando categorias ao tipo de produtos correspondente.
         cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
@@ -117,6 +131,7 @@ public class JavaSpringApplication implements CommandLineRunner {
         pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
         //Salvando pagamentos na base de dados
         pagamentoRepository.saveAll(Arrays.asList(pgto1, pgto2));
-                
+        //Salvando itens de pedidos na base de dados
+        itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
     }
 }
