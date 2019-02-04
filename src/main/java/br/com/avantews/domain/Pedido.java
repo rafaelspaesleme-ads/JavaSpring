@@ -1,5 +1,7 @@
 package br.com.avantews.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,10 +18,12 @@ public class Pedido implements Serializable {
     private Integer id;
     private Date instanteData;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
 
