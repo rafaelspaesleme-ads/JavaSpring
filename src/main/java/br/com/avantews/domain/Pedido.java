@@ -1,5 +1,6 @@
 package br.com.avantews.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instanteData;
 
     @JsonManagedReference
